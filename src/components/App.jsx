@@ -27,7 +27,7 @@ class App extends Component {
       .then(result => {
         return result.json()
       }).then(data => {
-        console.log(data);
+        //console.log(data);
         this.setState({imageList: data.hits, total: data.total})
       }).catch(error => console.log(error))
   }

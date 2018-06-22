@@ -27,7 +27,7 @@ class ImageItem extends Component {
       imageSelected: true
     });
 
-   // return <ImageModal key={e.target.id} />
+    console.log(this.state);
   }
 
   onCloseImage () {
