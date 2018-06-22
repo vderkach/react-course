@@ -1,0 +1,30 @@
+body {
+  background: #fff;
+}
+
+.app-container {
+  margin-top: 20px;
+}
+
+input[type='button'] {
+  margin-left: 5px;
+}
+
+img.thumbnail {
+  max-height: 100%;
+  min-height: 100%;
+  min-width: 150px;
+  width: auto;
+}
+
+.thumbnailWrapper {
+  width: 150px;
+  margin: 3px;
+  height: 110px;
+  overflow: hidden;
+  float: left;
+}
+
+.selectedWrapper {
+  text-align: center;
+}
