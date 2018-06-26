@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import ImageList from './ImageList';
+import ImageList from '../containers/ImageList';
+import ImageDetail from '../containers/ImageDetail';
+import { connect } from 'react-redux';
+
+import { fetchAPI } from '../reducers/searchClickedReducer';
 
 class App extends Component {
   constructor() {
@@ -9,7 +13,8 @@ class App extends Component {
     this.state = {
       type: 'initial state',
       imageList: [],
-      searchText: ''
+      searchText: '',
+      test: ''
     }
   }
 
@@ -23,13 +28,15 @@ class App extends Component {
     const API_URL = 'https://pixabay.com/api/?key=9335051-03222e3f37313e655b505bd68&q=';
     const requestText = encodeURIComponent(this.state.searchText);
 
+    //this.setState({test: })
+
     fetch(API_URL + requestText)
       .then(result => {
         return result.json()
       }).then(data => {
-        console.log(data);
         this.setState({imageList: data.hits, total: data.total})
       }).catch(error => console.log(error))
+
   }
 
   render () {
@@ -52,9 +59,24 @@ class App extends Component {
             <ImageList imageResults={this.state.imageList} imageCount ={this.state.total}/>
           </div>
         </div>
+        <div className='card'>
+          <ImageDetail />
+        </div>
       </div>
     )
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  return {
+    searchClicked: state.searchClicked
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchAPI: fetchAPI
+  }, dispatch)
+}
+
+export default connect(mapStateToProps)(App);

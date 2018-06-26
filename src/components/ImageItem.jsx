@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import ImageModal from './ImageModal';
+import { openAnImage } from '../actions/index';
 
 class ImageItem extends Component {
   constructor() {
@@ -27,6 +31,14 @@ class ImageItem extends Component {
       imageSelected: true
     });
 
+    console.log('this.props');
+    console.log(this.props);
+
+    this.props.openImage(this.props.imageData);
+
+    console.log('you clicked image');
+
+
    // return <ImageModal key={e.target.id} />
   }
 
@@ -37,7 +49,7 @@ class ImageItem extends Component {
   }
 
   render() {
-    console.log(this.state);
+    //console.log(this);
     if (!this.state.imageSelected) {
       return (
         <React.Fragment>
@@ -76,4 +88,16 @@ class ImageItem extends Component {
   }
 }
 
-export default ImageItem;
+function mapStateToProps(state){
+  return {
+    openedImage: state.openedImage
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    openImage: openAnImage
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageItem);
