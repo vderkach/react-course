@@ -3,79 +3,76 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ImageModal from './ImageModal';
-import { openAnImage } from '../actions/index';
+import { openAnImage, closeAnImage } from '../actions/index';
 
 class ImageItem extends Component {
   constructor() {
     super();
-
+    this.onCloseImage = this.onCloseImage.bind(this);
+    this.onClickImage = this.onClickImage.bind(this);
     this.state = {
-      id: '',
-      previewURL: '',
-      tags: '',
-      webformatURL: '',
-      imageSelected: false
+      selectedImage: false
     }
   }
 
-  fillImageData() {
-    
-  }
+
 
   onClickImage(e) {
+    console.log('ImageItem onClickImage');
+    console.log(this.props);
+    //console.log('this.state.openedImage before');
+    //console.log(this.state.openedImage);
+
     this.setState({
-      id: this.props.imageData.id,
-      previewURL:this.props.imageData.src,
-      tags: this.props.imageData.alt,
-      webformatURL: this.props.imageData.webformatURL,
-      imageSelected: true
+      selectedImage: !this.state.selectedImage
     });
 
-    console.log('this.props');
-    console.log(this.props);
+    //console.log('this.state.openedImage after');
+    //console.log(this.state.openedImage);
 
-    this.props.openImage(this.props.imageData);
-
-    console.log('you clicked image');
-
-
-   // return <ImageModal key={e.target.id} />
+    this.props.openImage();
   }
 
   onCloseImage () {
+
     this.setState({
-      imageSelected: false
-    })
+      selectedImage: !this.state.selectedImage
+    });
+
+    this.props.closeImage();
+
+
   }
 
   render() {
-    //console.log(this);
-    if (!this.state.imageSelected) {
+    console.log('current Image');
+    console.log(this);
+    if (!this.state.selectedImage) {
       return (
         <React.Fragment>
           <div className='thumbnailWrapper'>
             <img 
-              id={this.props.imageData.id} 
-              key={this.props.imageData.id} 
-              src={this.props.imageData.previewURL} 
-              alt={this.props.imageData.tags} 
+              id={this.props.currentImage.id} 
+              key={this.props.currentImage.id} 
+              src={this.props.currentImage.previewURL} 
+              alt={this.props.currentImage.tags} 
               className='img-thumbnail thumbnail'
-              onClick={this.onClickImage.bind(this)} />
+              onClick={this.onClickImage} />
           </div>
         </React.Fragment>
       )
     }
-    else if (this.state.imageSelected) {
+    else if (this.state.selectedImage) {
       return (
         <React.Fragment>
           <div className='selectedWrapper'>
             <img 
-              id={this.state.id} 
-              key={this.state.id} 
-              src={this.state.webformatURL} 
-              alt={this.state.tags} 
+              id={this.props.currentImage.id} 
+              key={this.props.currentImage.id} 
+              src={this.props.currentImage.webformatURL} 
+              alt={this.props.currentImage.tags} 
               className='img-thumbnail'
-              onClick={this.onCloseImage.bind(this)} />
+              onClick={this.onCloseImage} />
           </div>
         </React.Fragment>
       )
@@ -89,14 +86,17 @@ class ImageItem extends Component {
 }
 
 function mapStateToProps(state){
+  //console.log('state');
+  //console.log(state);
   return {
-    openedImage: state.openedImage
+    //openedImage1: state.openedImage
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    openImage: openAnImage
+    openImage: openAnImage,
+    closeImage: closeAnImage
   }, dispatch)
 }
 

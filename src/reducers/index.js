@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 
-import imageReducer from './imageReducer';
 import openedImageReducer from './openedImageReducer';
-import searchClickedReducer from './searchClickedReducer';
+import searchReducer from './searchReducer';
+import fetchImagesReducer from './fetchImagesReducer';
+import updateTextReducer from './updateTextReducer';
 
 const rootReducer = combineReducers({
-	images: imageReducer,
+	images: fetchImagesReducer,
 	openedImage: openedImageReducer,
-	searchClicked: searchClickedReducer
+	url: updateTextReducer
 });
 
 export default rootReducer;

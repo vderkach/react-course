@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 class ImageDetail extends Component {
 
   render() {
-    console.log("inside details");
-    console.log(this);
+    //console.log("inside details");
+    //console.log(this);
 
     if (!this.props.openedDetail) {
       //console.log(openedImageDetail);
