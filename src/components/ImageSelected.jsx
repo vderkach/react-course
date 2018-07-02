@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { openAnImage, closeAnImage } from '../actions/index';
-
 class ImageList extends Component {
   render() {
     console.log('rerender ImageSelected');
@@ -40,10 +38,4 @@ function mapStateToProps(state){
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
+export default connect(mapStateToProps)(ImageList);

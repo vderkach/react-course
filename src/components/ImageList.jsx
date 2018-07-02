@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { openAnImage, closeAnImage } from '../actions/index';
+import ImageSelected from './ImageSelected';
 
 import { API_URL } from '../constants/'
 
@@ -12,26 +13,13 @@ class ImageList extends Component {
   render() {
     console.log('rerender ImageList');
 
-    const {imageResults, selectedImage} = this.props;
+    const {imageResults} = this.props;
 
     if (imageResults) {
       if (imageResults.length > 0) {
         return (
           <React.Fragment>
-            {selectedImage ? (
-              <div className='card'>
-                <React.Fragment key={selectedImage.id} >
-                  <div className='selectedWrapper' >
-                    <img 
-                      src={selectedImage.webformatURL} 
-                      alt={selectedImage.tags} 
-                      className='img-thumbnail thumbnail' />
-                  </div>
-                </React.Fragment>
-              </div>
-            ) : (
-              null
-            )}
+            <ImageSelected />
 
             <div>
               {imageResults.map(image => (
@@ -57,7 +45,6 @@ class ImageList extends Component {
 
 function mapStateToProps(state){
   return {
-    selectedImage: state.selectedImage,
     url: state.url ? state.url : API_URL
   }
 }

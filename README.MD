@@ -1,3 +1,1 @@
-React Image Gallery App
-
-1. все перерендеривается когда кликаю на имедж на который раньше не кликала?
+React Image Gallery Apps
