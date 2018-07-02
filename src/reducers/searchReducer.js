@@ -1,12 +1,11 @@
+// Used when he user clicks on search button
+
 export default function(state=null, action) {
- // console.log("searchReducer action");
-  //console.log(action);
   switch(action.type) {
     case 'SEARCH_CLICKED': {
-      console.log('searchReducer SEARCH_CLICKED');
-      console.log(action);
       return action.url;
     }
+    default:
+      return state;
   }
-  return state;
 }

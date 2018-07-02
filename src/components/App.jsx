@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import ImageList from '../containers/ImageList';
-import ImageDetail from '../containers/ImageDetail';
+import ImageList from './ImageList';
 
 import { searchClicked, fetchAPI, updateSearchText } from '../actions/index';
-
-const API_URL = 'https://pixabay.com/api/?key=9335051-03222e3f37313e655b505bd68&q=';
+import { API_URL } from '../constants/';
 
 class App extends Component {
   constructor() {
@@ -20,7 +18,8 @@ class App extends Component {
     this.props.fetchAPI(this.props.url);
   }
 
-  render () {
+  render() {
+    const {url} = this.props;
 
     return (
       <div className='container app-container'>
@@ -40,14 +39,8 @@ class App extends Component {
             <ImageList imageResults={this.props.images}/>
           </div>
         </div>
-        <div className='card'>
-          <ImageDetail />
-        </div>
-
-
 
       </div>
-
     )
   }
 }

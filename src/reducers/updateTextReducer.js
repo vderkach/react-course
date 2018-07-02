@@ -1,12 +1,11 @@
+// Reducer which updates the text for searching
+
 export default function(state=null, action) {
- // console.log("searchReducer action");
-  //console.log(action);
   switch(action.type) {
     case 'UPDATE_TEXT': {
-      console.log('updateTextReducer UPDATE_TEXT');
-      console.log(action);
       return action.url;
     }
+    default:
+    	return state;
   }
-  return state;
 }

@@ -7,7 +7,7 @@ import updateTextReducer from './updateTextReducer';
 
 const rootReducer = combineReducers({
 	images: fetchImagesReducer,
-	openedImage: openedImageReducer,
+	selectedImage: openedImageReducer,
 	url: updateTextReducer
 });
 

@@ -1,16 +1,9 @@
-export function openAnImage() {
-  console.log('action openAnImage');
+import { API_URL } from '../constants/';
+
+export function openAnImage(img) {
   return {
     type: 'IMAGE_OPENED',
-    imageOpened: true
-  }
-}
-
-export function closeAnImage() {
-  console.log('action openAnImage');
-  return {
-    type: 'IMAGE_CLOSED',
-    imageOpened: false
+    selectedImage: img
   }
 }
 
@@ -18,15 +11,6 @@ export function searchClickedAction(url) {
   return {
     type: 'SEARCH_CLICKED',
     url
-  }
-}
-
-export function updateSearchText(e){
-  const API_URL = 'https://pixabay.com/api/?key=9335051-03222e3f37313e655b505bd68&q=';
-  const requestText = encodeURIComponent(e.target.value);
-  return {
-    type: 'UPDATE_TEXT',
-    url: API_URL + requestText
   }
 }
 
@@ -43,5 +27,12 @@ export function fetchAPI(url) {
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(fetchImages(json)))
+  }
+}
+
+export function updateSearchText(e){
+  return {
+    type: 'UPDATE_TEXT',
+    url: API_URL + encodeURIComponent(e.target.value)
   }
 }
