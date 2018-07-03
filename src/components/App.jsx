@@ -32,17 +32,6 @@ class App extends Component {
             <input type="text" onChange={ this.props.updateSearchText.bind(this) } className="form-control" placeholder="ex. ocean" aria-label="Search" aria-describedby="Search"></input>
             <input type="button" onClick={ this.onButtonClick } value="Search" className = 'btn btn-success'></input>
           </div>
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
-            <label className="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" defaultChecked></input>
-            </label>
-            <label className="btn btn-secondary">
-              <input type="radio" name="options" id="option2" ></input>
-            </label>
-            <label className="btn btn-secondary">
-              <input type="radio" name="options" id="option3" ></input>
-            </label>
-          </div>
         </form>
 
         <div className='card'>
