@@ -1,28 +1,20 @@
 //ImageList Component which will return our images
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-class ImageList extends Component {
+class ImageSelected extends Component {
   render() {
-    console.log('rerender ImageSelected');
-
     const {selectedImage} = this.props;
 
     return (
       <React.Fragment>
         {selectedImage ? (
-          <div className='card'>
-            <React.Fragment key={selectedImage.id} >
-              <div className='selectedWrapper' >
-                <img 
-                  src={selectedImage.webformatURL} 
-                  alt={selectedImage.tags} 
-                  className='img-thumbnail thumbnail' />
-              </div>
-            </React.Fragment>
-          </div>
+            <div className='selectedWrapper'>
+              <img 
+                src={selectedImage.webformatURL} 
+                alt={selectedImage.tags} 
+                className='img-thumbnail thumbnail' />
+            </div>
         ) : (
           null
         )}
@@ -32,10 +24,4 @@ class ImageList extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    selectedImage: state.selectedImage
-  }
-}
-
-export default connect(mapStateToProps)(ImageList);
+export default ImageSelected;

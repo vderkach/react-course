@@ -1,41 +1,32 @@
 //ImageList Component which will return our images
-
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { openAnImage, closeAnImage } from '../actions/index';
-import ImageSelected from './ImageSelected';
-
-import { API_URL } from '../constants/'
+import ImageSelected from '../containers/ImageSelected';
 
 class ImageList extends Component {
+
   render() {
-    console.log('rerender ImageList');
+    const {imagesResults, openAnImage} = this.props;
 
-    const {imageResults} = this.props;
-
-    if (imageResults) {
-      if (imageResults.length > 0) {
+    if (imagesResults) {
+      if (imagesResults.length > 0) {
         return (
-          <React.Fragment>
+          <div className='card-body'>
             <ImageSelected />
 
             <div>
-              {imageResults.map(image => (
-                <React.Fragment key={image.id} >
-                  <div className='thumbnailWrapper' >
-                    <img 
-                      src={image.previewURL} 
-                      alt={image.tags} 
-                      className='img-thumbnail thumbnail'
-                      onClick={() => this.props.openAnImage(image)} />
-                  </div>
-                </React.Fragment>
+              {imagesResults.map(image => (
+                <div className='thumbnailWrapper' key={image.id}>
+                  <img 
+                    src={image.previewURL} 
+                    alt={image.tags} 
+                    className='img-thumbnail thumbnail'
+                    onClick={() => openAnImage(image)} />
+                </div>
               ))}
             </div>
           
-          </React.Fragment>
+          </div>
         )
       }
     }
@@ -43,17 +34,4 @@ class ImageList extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    url: state.url ? state.url : API_URL
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    openAnImage: openAnImage,
-    closeAnImage: closeAnImage
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
+export default ImageList;

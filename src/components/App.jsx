@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
-import ImageList from './ImageList';
+import ImageList from '../containers/ImageList';
+import Pagination from '../containers/Pagination';
+import Spinner from '../containers/Spinner';
 
-import { searchClicked, fetchAPI, updateSearchText } from '../actions/index';
 import { API_URL } from '../constants/';
 
 class App extends Component {
@@ -15,12 +14,11 @@ class App extends Component {
 
   onButtonClick(e) {
     e.preventDefault();
-    this.props.fetchAPI(this.props.url);
+    this.props.reset();
+    this.props.fetchAPI();
   }
 
   render() {
-    const {url} = this.props;
-
     return (
       <div className='container app-container'>
         <form>
@@ -32,23 +30,13 @@ class App extends Component {
             <input type="text" onChange={ this.props.updateSearchText.bind(this) } className="form-control" placeholder="ex. ocean" aria-label="Search" aria-describedby="Search"></input>
             <input type="button" onClick={ this.onButtonClick } value="Search" className = 'btn btn-success'></input>
           </div>
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
-            <label className="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" defaultChecked></input>
-            </label>
-            <label className="btn btn-secondary">
-              <input type="radio" name="options" id="option2" ></input>
-            </label>
-            <label className="btn btn-secondary">
-              <input type="radio" name="options" id="option3" ></input>
-            </label>
-          </div>
+          <Pagination />
         </form>
 
-        <div className='card'>
-          <div className='card-body'>
-            <ImageList imageResults={this.props.images}/>
-          </div>
+        <Spinner />
+
+        <div className='card'>            
+          <ImageList />
         </div>
 
       </div>
@@ -56,18 +44,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    images: state.images,
-    url: state.url ? state.url : API_URL
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchAPI: fetchAPI,
-    updateSearchText: updateSearchText
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

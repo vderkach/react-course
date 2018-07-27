@@ -1,1 +1,1 @@
-export const API_URL = 'https://pixabay.com/api/?key=9335051-03222e3f37313e655b505bd68&q=';
+export const API_URL = 'https://pixabay.com/api/?key=9335051-03222e3f37313e655b505bd68&per_page=40&q=';
