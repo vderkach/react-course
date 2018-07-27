@@ -1,0 +1,9 @@
+export const IMAGE_OPENED = 'IMAGE_OPENED';
+export const SEARCH_CLICKED = 'SEARCH_CLICKED';
+export const FETCH_IMAGES = 'FETCH_IMAGES';
+export const UPDATE_TEXT = 'UPDATE_TEXT';
+export const NEXT_PAGE = 'NEXT_PAGE';
+export const PREV_PAGE = 'PREV_PAGE';
+export const RESET = 'RESET';
+export const START_FETCHING = 'START_FETCHING';
+export const FINISH_FETCHING = 'FINISH_FETCHING';
