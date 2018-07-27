@@ -23,40 +23,35 @@ export function fetchImages(images) {
 }
 
 export function nextPageClick() {
-  console.log('nextPageClick');
   return {
     type: actions.NEXT_PAGE
   }
 }
 
 export function prevPageClick() {
-  console.log('prevPageClick');
   return {
     type: actions.PREV_PAGE
   }
 }
 
 export function startFetching() {
-  console.log('startFetching');
   return {
     type: actions.START_FETCHING
   }
 }
 
 export function finishFetching() {
-  console.log('finishFetching');
   return {
     type: actions.FINISH_FETCHING
   }
 }
 
-export function fetchAPI(url) {
-  return (dispatch, getState) => {
+export function fetchAPI() {
+  return async(dispatch, getState) => {
     const state = getState().reducer;
     dispatch(startFetching());
-    const result = fetch(API_URL + state.query + '&page=' + state.currentPage)
-      .then(response => response.json())
-      .then(json => dispatch(fetchImages(json)), err => dispatch(finishFetching()));
+    const result = await fetch(API_URL + state.query + '&page=' + state.currentPage).then(response => response.json()).then(json => dispatch(fetchImages(json)));
+    dispatch(finishFetching());
     return result;
   }
 }

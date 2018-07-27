@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import ImageList from '../containers/ImageList';
 import Pagination from '../containers/Pagination';
 import Spinner from '../containers/Spinner';
-
-import { API_URL } from '../constants/';
+import ImageSelected from '../containers/ImageSelected';
 
 class App extends Component {
   constructor() {
@@ -35,9 +34,9 @@ class App extends Component {
 
         <Spinner />
 
-        <div className='card'>            
-          <ImageList />
-        </div>
+        <ImageSelected />
+
+        <ImageList />
 
       </div>
     )

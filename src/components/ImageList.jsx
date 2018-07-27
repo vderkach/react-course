@@ -1,8 +1,6 @@
 //ImageList Component which will return our images
 import React, { Component } from 'react';
 
-import ImageSelected from '../containers/ImageSelected';
-
 class ImageList extends Component {
 
   render() {
@@ -10,12 +8,13 @@ class ImageList extends Component {
 
     if (imagesResults) {
       if (imagesResults.length > 0) {
+        if (this.props.isFetching) {
+          return null;
+        }
         return (
           <div className='card-body'>
-            <ImageSelected />
-
-            <div>
-              {imagesResults.map(image => (
+            { 
+              imagesResults.map(image => (
                 <div className='thumbnailWrapper' key={image.id}>
                   <img 
                     src={image.previewURL} 
@@ -23,9 +22,8 @@ class ImageList extends Component {
                     className='img-thumbnail thumbnail'
                     onClick={() => openAnImage(image)} />
                 </div>
-              ))}
-            </div>
-          
+              ))
+            }
           </div>
         )
       }

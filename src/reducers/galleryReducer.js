@@ -1,16 +1,7 @@
 import * as actions from '../constants/actions';
-import { API_URL } from '../constants/';
+import * as reducers from '../constants/reducers';
 
-const InitialState = {
-    images: [],
-    query: '',
-    selectedImage: '',
-    currentPage: 1,
-    totalImages: 0,
-    isFetching: false
-};
-
-export default function(state=InitialState, action) {
+export default function(state=reducers.defaultState, action) {
   switch(action.type) {
     case actions.FETCH_IMAGES: {
       return Object.assign({}, state, {
@@ -50,9 +41,8 @@ export default function(state=InitialState, action) {
             });
     }
     case actions.FINISH_FETCHING: {
-      console.log(state);
       return Object.assign({}, state, {
-              isFetching: (state.images.length != 0) ? false : true
+              isFetching: false
             });
     }
     default:

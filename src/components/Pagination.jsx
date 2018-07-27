@@ -1,4 +1,4 @@
-//Pagination Component which will return our images
+//Pagination Component
 
 import React, { Component } from 'react';
 

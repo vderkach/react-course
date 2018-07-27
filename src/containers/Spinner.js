@@ -5,7 +5,7 @@ import Spinner from '../components/Spinner';
 
 function mapStateToProps(state){
   return {
-    isFetching: state.reducer.isFetching && (!state.reducer.images.length)
+    isFetching: state.reducer.isFetching
   }
 }
 

@@ -1,25 +1,20 @@
-//ImageList Component which will return our images
+//ImageSelected Component which will display selected Image
 
 import React, { Component } from 'react';
 
 class ImageSelected extends Component {
   render() {
     const {selectedImage} = this.props;
-
+    if (!selectedImage) {
+      return null;
+    }
     return (
-      <React.Fragment>
-        {selectedImage ? (
-            <div className='selectedWrapper'>
-              <img 
-                src={selectedImage.webformatURL} 
-                alt={selectedImage.tags} 
-                className='img-thumbnail thumbnail' />
-            </div>
-        ) : (
-          null
-        )}
-     
-      </React.Fragment>
+      <div className='selectedWrapper'>
+        <img 
+          src={selectedImage.webformatURL} 
+          alt={selectedImage.tags} 
+          className='img-thumbnail thumbnail' />
+      </div>
     )
   }
 }

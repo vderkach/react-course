@@ -36,6 +36,17 @@ img.thumbnail {
   color: #28a745;
 }
 
+.spinnerBackground {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  z-index: 1000;
+}
+
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -43,6 +54,9 @@ img.thumbnail {
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
+    margin: 30% 36%;
+    position: absolute;
+    z-index: 1001;
 }
 
 @keyframes spin {
